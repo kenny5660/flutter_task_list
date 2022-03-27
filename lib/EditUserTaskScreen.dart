@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'UserTask.dart';
 import 'package:date_field/date_field.dart';
+import 'package:intl/intl.dart';
 
 class EditUserTaskScreen extends StatelessWidget {
   static const String id = "edit_usertask";
   EditUserTaskScreen({this.initUserTask}) {
     if (initUserTask != null) {
-      newUserTask = initUserTask!.copy();
+      newUserTask = UserTask.fromMap(initUserTask!.toMap());
     }
   }
 
@@ -38,6 +39,7 @@ class EditUserTaskScreen extends StatelessWidget {
               suffixIcon: Icon(Icons.event_note),
               labelText: 'Remind time',
             ),
+            dateFormat: DateFormat("yyyy-MM-dd HH:mm"),
             mode: DateTimeFieldPickerMode.dateAndTime,
             onDateSelected: (DateTime value) {
               newUserTask.reminderDateTime = value;
