@@ -50,6 +50,7 @@ class DatabaseHelper {
 
   Future<int> insertUserTask(UserTask userTask) async {
     int result = await db.insert(_tableName, userTask.toMap());
+    userTask.id = result;
     return result;
   }
 
